@@ -1,0 +1,2313 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/auth/me": {
+      "get": {
+        "operationId": "AuthController_me",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns the authenticated user (mapped from Better Auth JWT)."
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/healthz": {
+      "get": {
+        "operationId": "HealthController_healthz",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Health"
+        ]
+      }
+    },
+    "/readyz": {
+      "get": {
+        "operationId": "HealthController_readyz",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Health"
+        ]
+      }
+    },
+    "/projects": {
+      "post": {
+        "operationId": "RoadsController_createProject",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProjectDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "roads"
+        ]
+      },
+      "get": {
+        "operationId": "RoadsController_listProjects",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "roads"
+        ]
+      }
+    },
+    "/projects/{projectId}/roads": {
+      "post": {
+        "operationId": "RoadsController_createRoad",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRoadDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "roads"
+        ]
+      },
+      "get": {
+        "operationId": "RoadsController_listRoads",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "roads"
+        ]
+      }
+    },
+    "/roads/{roadId}/sections": {
+      "post": {
+        "operationId": "RoadsController_createSection",
+        "parameters": [
+          {
+            "name": "roadId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRoadSectionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "roads"
+        ]
+      },
+      "get": {
+        "operationId": "RoadsController_listSections",
+        "parameters": [
+          {
+            "name": "roadId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "roads"
+        ]
+      }
+    },
+    "/sections/{sectionId}/elements": {
+      "post": {
+        "operationId": "RoadsController_addElement",
+        "parameters": [
+          {
+            "name": "sectionId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRoadElementDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "roads"
+        ]
+      }
+    },
+    "/sections/{sectionId}/features": {
+      "post": {
+        "operationId": "RoadsController_addFeature",
+        "parameters": [
+          {
+            "name": "sectionId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRoadFeatureDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "roads"
+        ]
+      }
+    },
+    "/sections/{sectionId}/work-items": {
+      "post": {
+        "operationId": "RoadsController_createWorkItem",
+        "parameters": [
+          {
+            "name": "sectionId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateWorkItemDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "roads"
+        ]
+      },
+      "get": {
+        "operationId": "RoadsController_listWorkItems",
+        "parameters": [
+          {
+            "name": "sectionId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "roads"
+        ]
+      }
+    },
+    "/progress": {
+      "post": {
+        "operationId": "RoadsController_addProgress",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDailyProgressDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "roads"
+        ]
+      }
+    },
+    "/dashboard/overview": {
+      "get": {
+        "operationId": "DashboardController_overview",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DashboardOverviewDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "dashboard"
+        ]
+      }
+    },
+    "/dashboard/projects/{projectId}": {
+      "get": {
+        "operationId": "DashboardController_project",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "workDate",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectDashboardDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "dashboard"
+        ]
+      }
+    },
+    "/machinery": {
+      "post": {
+        "operationId": "MachineryController_createMachinery",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMachineryDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "machinery"
+        ]
+      },
+      "get": {
+        "operationId": "MachineryController_listMachinery",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "machinery"
+        ]
+      }
+    },
+    "/fuel/requests": {
+      "post": {
+        "operationId": "MachineryController_requestFuel",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFuelRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "machinery"
+        ]
+      }
+    },
+    "/fuel/requests/{id}/approve": {
+      "post": {
+        "operationId": "MachineryController_approve",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApproveFuelRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "machinery"
+        ]
+      }
+    },
+    "/fuel/issues": {
+      "post": {
+        "operationId": "MachineryController_issue",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFuelIssueDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "machinery"
+        ]
+      }
+    },
+    "/safety/inspections": {
+      "post": {
+        "operationId": "SafetyController_createInspection",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSafetyInspectionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "safety"
+        ]
+      }
+    },
+    "/safety/inspections/{projectId}": {
+      "get": {
+        "operationId": "SafetyController_listInspections",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "safety"
+        ]
+      }
+    },
+    "/incidents": {
+      "post": {
+        "operationId": "SafetyController_createIncident",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateIncidentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "safety"
+        ]
+      }
+    },
+    "/incidents/{projectId}": {
+      "get": {
+        "operationId": "SafetyController_listIncidents",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "safety"
+        ]
+      }
+    },
+    "/environment/records": {
+      "post": {
+        "operationId": "EnvironmentController_createRecord",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEnvironmentalRecordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "environment"
+        ]
+      }
+    },
+    "/environment/records/{projectId}": {
+      "get": {
+        "operationId": "EnvironmentController_list",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "environment"
+        ]
+      }
+    },
+    "/grievances": {
+      "post": {
+        "operationId": "GrievanceController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateGrievanceDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "grievance"
+        ]
+      }
+    },
+    "/grievances/{projectId}": {
+      "get": {
+        "operationId": "GrievanceController_list",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "grievance"
+        ]
+      }
+    },
+    "/grievances/actions": {
+      "post": {
+        "operationId": "GrievanceController_addAction",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddGrievanceActionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "grievance"
+        ]
+      }
+    },
+    "/checklists/templates": {
+      "post": {
+        "operationId": "QaController_createTemplate",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateChecklistTemplateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "qa"
+        ]
+      }
+    },
+    "/inspections": {
+      "post": {
+        "operationId": "QaController_createInspection",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInspectionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "qa"
+        ]
+      }
+    },
+    "/rework/close": {
+      "post": {
+        "operationId": "QaController_closeRework",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CloseReworkDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "qa"
+        ]
+      }
+    },
+    "/suppliers": {
+      "post": {
+        "operationId": "SupplierController_createSupplier",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSupplierDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "suppliers"
+        ]
+      }
+    },
+    "/suppliers/{projectId}": {
+      "get": {
+        "operationId": "SupplierController_listSuppliers",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "suppliers"
+        ]
+      }
+    },
+    "/suppliers/{supplierId}/approve": {
+      "post": {
+        "operationId": "SupplierController_approveSupplier",
+        "parameters": [
+          {
+            "name": "supplierId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "suppliers"
+        ]
+      }
+    },
+    "/suppliers/{supplierId}/status": {
+      "post": {
+        "operationId": "SupplierController_updateStatus",
+        "parameters": [
+          {
+            "name": "supplierId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSupplierStatusDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "suppliers"
+        ]
+      }
+    },
+    "/suppliers/{supplierId}/reinstate": {
+      "post": {
+        "operationId": "SupplierController_reinstate",
+        "parameters": [
+          {
+            "name": "supplierId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReinstateSupplierDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "suppliers"
+        ]
+      }
+    },
+    "/suppliers/{supplierId}/documents": {
+      "post": {
+        "operationId": "SupplierController_addDocument",
+        "parameters": [
+          {
+            "name": "supplierId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSupplierDocumentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "suppliers"
+        ]
+      },
+      "get": {
+        "operationId": "SupplierController_listDocuments",
+        "parameters": [
+          {
+            "name": "supplierId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "suppliers"
+        ]
+      }
+    },
+    "/suppliers/{supplierId}/sources": {
+      "post": {
+        "operationId": "SupplierController_addSource",
+        "parameters": [
+          {
+            "name": "supplierId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMaterialSourceDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "suppliers"
+        ]
+      },
+      "get": {
+        "operationId": "SupplierController_listSources",
+        "parameters": [
+          {
+            "name": "supplierId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "suppliers"
+        ]
+      }
+    },
+    "/suppliers/{supplierId}/performance": {
+      "post": {
+        "operationId": "SupplierController_addPerformance",
+        "parameters": [
+          {
+            "name": "supplierId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSupplierPerformanceDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "suppliers"
+        ]
+      },
+      "get": {
+        "operationId": "SupplierController_listPerformance",
+        "parameters": [
+          {
+            "name": "supplierId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "suppliers"
+        ]
+      }
+    },
+    "/attachments/presign": {
+      "post": {
+        "operationId": "AttachmentsController_presign",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PresignUploadDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "attachments"
+        ]
+      }
+    },
+    "/attachments/link": {
+      "post": {
+        "operationId": "AttachmentsController_link",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LinkAttachmentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "attachments"
+        ]
+      }
+    },
+    "/attachments/{id}": {
+      "get": {
+        "operationId": "AttachmentsController_download",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "attachments"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "RQMS API",
+    "description": "Operations & Field Execution API (v1)",
+    "version": "0.1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "CreateProjectDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "projectType": {
+            "type": "string",
+            "enum": [
+              "ROAD",
+              "BRIDGE",
+              "DRAINAGE",
+              "OTHER"
+            ],
+            "default": "ROAD"
+          }
+        },
+        "required": [
+          "name",
+          "projectType"
+        ]
+      },
+      "CreateRoadDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string",
+            "description": "Unique code within the project."
+          },
+          "roadType": {
+            "type": "string",
+            "description": "Free text, e.g. highway, city road."
+          }
+        },
+        "required": [
+          "name",
+          "code"
+        ]
+      },
+      "CreateRoadSectionDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "startChainage": {
+            "type": "number"
+          },
+          "endChainage": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "CreateRoadElementDto": {
+        "type": "object",
+        "properties": {
+          "elementType": {
+            "type": "string",
+            "description": "e.g. sidewalk, bike_lane, drainage, lighting"
+          },
+          "fromChainage": {
+            "type": "number"
+          },
+          "toChainage": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "elementType"
+        ]
+      },
+      "CreateRoadFeatureDto": {
+        "type": "object",
+        "properties": {
+          "featureType": {
+            "type": "string",
+            "description": "e.g. inlet, sign, crossing, pole"
+          },
+          "chainage": {
+            "type": "number"
+          },
+          "lat": {
+            "type": "number"
+          },
+          "lng": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "featureType"
+        ]
+      },
+      "CreateWorkItemDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string",
+            "description": "Unit of measure, e.g. m, m2, m3, ton, item"
+          },
+          "roadElementId": {
+            "type": "string"
+          },
+          "roadFeatureId": {
+            "type": "string"
+          },
+          "workLayerId": {
+            "type": "string"
+          },
+          "activityTypeId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "unit"
+        ]
+      },
+      "CreateDailyProgressDto": {
+        "type": "object",
+        "properties": {
+          "workItemId": {
+            "type": "string"
+          },
+          "workDate": {
+            "type": "string",
+            "description": "YYYY-MM-DD"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "fromChainage": {
+            "type": "number"
+          },
+          "toChainage": {
+            "type": "number"
+          },
+          "lat": {
+            "type": "number"
+          },
+          "lng": {
+            "type": "number"
+          },
+          "weather": {
+            "type": "object"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "workItemId",
+          "workDate",
+          "quantity"
+        ]
+      },
+      "DashboardProjectLiteDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "projectType": {
+            "type": "string",
+            "enum": [
+              "ROAD",
+              "BRIDGE",
+              "DRAINAGE",
+              "OTHER"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "ISO timestamp"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "projectType",
+          "createdAt"
+        ]
+      },
+      "DashboardOverviewDto": {
+        "type": "object",
+        "properties": {
+          "projectsCount": {
+            "type": "number"
+          },
+          "recentProjects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DashboardProjectLiteDto"
+            }
+          }
+        },
+        "required": [
+          "projectsCount",
+          "recentProjects"
+        ]
+      },
+      "DashboardCountsDto": {
+        "type": "object",
+        "properties": {
+          "roads": {
+            "type": "number"
+          },
+          "sections": {
+            "type": "number"
+          },
+          "workItems": {
+            "type": "number"
+          },
+          "progressEntriesOnDate": {
+            "type": "number",
+            "description": "Number of daily progress entries on workDate."
+          },
+          "progressQuantityOnDate": {
+            "type": "number",
+            "description": "Sum(quantity) of daily progress entries on workDate."
+          },
+          "openFailedReworks": {
+            "type": "number",
+            "description": "Open rework records linked to failed inspections."
+          },
+          "fuelRequestsRequested": {
+            "type": "number"
+          },
+          "fuelRequestsApproved": {
+            "type": "number"
+          },
+          "fuelIssues": {
+            "type": "number"
+          },
+          "safetyInspections": {
+            "type": "number"
+          },
+          "incidents": {
+            "type": "number"
+          },
+          "environmentalRecords": {
+            "type": "number"
+          },
+          "grievancesOpen": {
+            "type": "number"
+          },
+          "grievancesTotal": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "roads",
+          "sections",
+          "workItems",
+          "progressEntriesOnDate",
+          "progressQuantityOnDate",
+          "openFailedReworks",
+          "fuelRequestsRequested",
+          "fuelRequestsApproved",
+          "fuelIssues",
+          "safetyInspections",
+          "incidents",
+          "environmentalRecords",
+          "grievancesOpen",
+          "grievancesTotal"
+        ]
+      },
+      "DashboardFuelRequestLiteDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "requestedLiters": {
+            "type": "number"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "ISO timestamp"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "requestedLiters",
+          "createdAt"
+        ]
+      },
+      "DashboardIncidentLiteDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "occurredAt": {
+            "type": "string",
+            "description": "ISO timestamp"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "occurredAt",
+          "severity",
+          "description"
+        ]
+      },
+      "DashboardEnvironmentalLiteDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "parameter": {
+            "type": "string"
+          },
+          "value": {
+            "type": "object",
+            "nullable": true
+          },
+          "unit": {
+            "type": "object",
+            "nullable": true
+          },
+          "capturedAt": {
+            "type": "string",
+            "description": "ISO timestamp"
+          }
+        },
+        "required": [
+          "id",
+          "parameter",
+          "capturedAt"
+        ]
+      },
+      "DashboardGrievanceLiteDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "ISO timestamp"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "description",
+          "createdAt"
+        ]
+      },
+      "ProjectDashboardDto": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string"
+          },
+          "workDate": {
+            "type": "string",
+            "description": "YYYY-MM-DD"
+          },
+          "counts": {
+            "$ref": "#/components/schemas/DashboardCountsDto"
+          },
+          "recentFuelRequests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DashboardFuelRequestLiteDto"
+            }
+          },
+          "recentIncidents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DashboardIncidentLiteDto"
+            }
+          },
+          "recentEnvironmentalRecords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DashboardEnvironmentalLiteDto"
+            }
+          },
+          "recentGrievances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DashboardGrievanceLiteDto"
+            }
+          }
+        },
+        "required": [
+          "projectId",
+          "workDate",
+          "counts",
+          "recentFuelRequests",
+          "recentIncidents",
+          "recentEnvironmentalRecords",
+          "recentGrievances"
+        ]
+      },
+      "CreateMachineryDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "plateOrSerial": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "CreateFuelRequestDto": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string"
+          },
+          "machineryId": {
+            "type": "string"
+          },
+          "requestedLiters": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "projectId",
+          "machineryId",
+          "requestedLiters"
+        ]
+      },
+      "ApproveFuelRequestDto": {
+        "type": "object",
+        "properties": {
+          "note": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateFuelIssueDto": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string"
+          },
+          "machineryId": {
+            "type": "string"
+          },
+          "fuelRequestId": {
+            "type": "string"
+          },
+          "issuedLiters": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "projectId",
+          "machineryId",
+          "issuedLiters"
+        ]
+      },
+      "CreateSafetyInspectionDto": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string"
+          },
+          "inspectionDate": {
+            "type": "string",
+            "description": "YYYY-MM-DD"
+          },
+          "title": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "projectId",
+          "inspectionDate"
+        ]
+      },
+      "CreateIncidentDto": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string"
+          },
+          "occurredAt": {
+            "type": "string",
+            "description": "ISO timestamp"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "default": "medium"
+          },
+          "description": {
+            "type": "string"
+          },
+          "lat": {
+            "type": "number"
+          },
+          "lng": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "projectId",
+          "occurredAt",
+          "severity",
+          "description"
+        ]
+      },
+      "CreateEnvironmentalRecordDto": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string"
+          },
+          "capturedAt": {
+            "type": "string",
+            "description": "ISO timestamp"
+          },
+          "parameter": {
+            "type": "string",
+            "description": "e.g. dust, noise, waste"
+          },
+          "value": {
+            "type": "number"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "projectId",
+          "capturedAt",
+          "parameter"
+        ]
+      },
+      "CreateGrievanceDto": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "complainantName": {
+            "type": "string"
+          },
+          "complainantContact": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "projectId",
+          "description"
+        ]
+      },
+      "AddGrievanceActionDto": {
+        "type": "object",
+        "properties": {
+          "grievanceId": {
+            "type": "string"
+          },
+          "actionType": {
+            "type": "string",
+            "description": "note, assign, close, escalate..."
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "grievanceId",
+          "actionType"
+        ]
+      },
+      "CreateChecklistTemplateDto": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "projectId",
+          "name",
+          "items"
+        ]
+      },
+      "CreateInspectionDto": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string"
+          },
+          "workItemId": {
+            "type": "string"
+          },
+          "checklistTemplateId": {
+            "type": "string"
+          },
+          "fromChainage": {
+            "type": "number"
+          },
+          "toChainage": {
+            "type": "number"
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "conditional",
+              "fail"
+            ],
+            "default": "pass"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "inspectedAt": {
+            "type": "string",
+            "description": "ISO timestamp"
+          }
+        },
+        "required": [
+          "projectId",
+          "workItemId",
+          "outcome",
+          "inspectedAt"
+        ]
+      },
+      "CloseReworkDto": {
+        "type": "object",
+        "properties": {
+          "inspectionId": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "inspectionId"
+        ]
+      },
+      "CreateSupplierDto": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "registrationNumber": {
+            "type": "string"
+          },
+          "contactName": {
+            "type": "string"
+          },
+          "contactPhone": {
+            "type": "string"
+          },
+          "contactEmail": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "projectId",
+          "name"
+        ]
+      },
+      "UpdateSupplierStatusDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "suspended",
+              "blacklisted"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "ReinstateSupplierDto": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateSupplierDocumentDto": {
+        "type": "object",
+        "properties": {
+          "documentType": {
+            "type": "string",
+            "enum": [
+              "LICENSE",
+              "CERTIFICATION",
+              "APPROVAL",
+              "OTHER"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "referenceNumber": {
+            "type": "string"
+          },
+          "issuingAuthority": {
+            "type": "string"
+          },
+          "validFrom": {
+            "type": "string",
+            "description": "YYYY-MM-DD"
+          },
+          "validTo": {
+            "type": "string",
+            "description": "YYYY-MM-DD"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "documentType",
+          "title"
+        ]
+      },
+      "CreateMaterialSourceDto": {
+        "type": "object",
+        "properties": {
+          "sourceType": {
+            "type": "string",
+            "enum": [
+              "QUARRY",
+              "REFINERY",
+              "CEMENT_PLANT",
+              "OTHER"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "materialType": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "licenseNumber": {
+            "type": "string"
+          },
+          "validFrom": {
+            "type": "string",
+            "description": "YYYY-MM-DD"
+          },
+          "validTo": {
+            "type": "string",
+            "description": "YYYY-MM-DD"
+          },
+          "status": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "sourceType",
+          "name"
+        ]
+      },
+      "CreateSupplierPerformanceDto": {
+        "type": "object",
+        "properties": {
+          "evaluationDate": {
+            "type": "string",
+            "description": "YYYY-MM-DD"
+          },
+          "qualityScore": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "complianceScore": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "remarks": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "evaluationDate",
+          "qualityScore",
+          "complianceScore"
+        ]
+      },
+      "PresignUploadDto": {
+        "type": "object",
+        "properties": {
+          "fileName": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string"
+          },
+          "keyPrefix": {
+            "type": "string",
+            "description": "Optional key prefix, e.g. 'progress/'"
+          }
+        }
+      },
+      "LinkAttachmentDto": {
+        "type": "object",
+        "properties": {
+          "objectKey": {
+            "type": "string",
+            "description": "The object key returned by /attachments/presign."
+          },
+          "contentType": {
+            "type": "string"
+          },
+          "sizeBytes": {
+            "type": "string"
+          },
+          "linkedEntityType": {
+            "type": "string",
+            "description": "e.g. daily_progress, inspection, incident"
+          },
+          "linkedEntityId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "objectKey"
+        ]
+      }
+    }
+  }
+}

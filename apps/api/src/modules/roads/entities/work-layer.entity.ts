@@ -1,0 +1,20 @@
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+
+@Entity({ name: "work_layers" })
+export class WorkLayer {
+  @PrimaryGeneratedColumn("uuid")
+  id!: string;
+
+  @Column({ type: "text" })
+  name!: string;
+
+  @Column({ type: "text", nullable: true })
+  description!: string | null;
+
+  @CreateDateColumn({ type: "timestamptz" })
+  createdAt!: Date;
+
+  @UpdateDateColumn({ type: "timestamptz" })
+  updatedAt!: Date;
+}
+

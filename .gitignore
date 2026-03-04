@@ -1,0 +1,14 @@
+node_modules/
+.next/
+dist/
+coverage/
+.env
+.env.*.local
+*.log
+
+# TypeORM
+apps/api/src/migrations/*.js
+
+# Better Auth CLI outputs (if used)
+schema.sql
+
