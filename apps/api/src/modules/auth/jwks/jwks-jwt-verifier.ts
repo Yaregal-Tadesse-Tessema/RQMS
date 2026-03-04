@@ -12,7 +12,7 @@ export class JwksJwtVerifier {
   private readonly jwks: ReturnType<typeof createRemoteJWKSet>;
 
   constructor() {
-    const url = "http://localhost:3000/api/auth/jwks";
+    const url = "http://localhost:5000/api/auth/jwks";
     this.jwksUrl = new URL(url);
     this.jwks = createRemoteJWKSet(this.jwksUrl);
   }

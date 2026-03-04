@@ -14,7 +14,7 @@ if (!secret || secret.length < 32) {
 }
 
 export const auth = betterAuth({
-  baseURL: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  baseURL: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:5000",
   secret,
   database: {
     db: new Kysely({
