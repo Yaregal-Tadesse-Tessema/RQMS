@@ -34,7 +34,9 @@ This repo implements **Operations & Field Execution** (requirements sections 5, 
    - `DATABASE_SSL` (`true` for managed/cloud Postgres, otherwise `false`)
    - `TYPEORM_SYNCHRONIZE=false`
 3. Start or restart PM2:
-   - `pm2 start ecosystem.config.cjs --only rqms-api`
+   - If you previously started with `pm2 start main.js --name rqms-api`, replace it:
+     - `pm2 delete rqms-api`
+     - `pm2 start ecosystem.config.cjs --only rqms-api`
    - `pm2 restart ecosystem.config.cjs --only rqms-api --update-env`
 4. Persist PM2 process list:
    - `pm2 save`

@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { resolve } from "node:path";
 
 import { AttachmentsModule } from "../attachments/attachments.module";
 import { AuthModule } from "../auth/auth.module";
@@ -17,7 +18,16 @@ import { SupplierModule } from "../supplier/supplier.module";
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true
+      isGlobal: true,
+      // Support both local and PM2 deployments where cwd may be repo root or apps/api.
+      envFilePath: [
+        resolve(process.cwd(), ".env"),
+        resolve(process.cwd(), "apps/api/.env"),
+        resolve(process.cwd(), "../.env"),
+        resolve(process.cwd(), "../../.env"),
+        resolve(__dirname, "../../../.env"),
+        resolve(__dirname, "../../../../../.env")
+      ]
     }),
     TypeOrmModule.forRootAsync({
       useFactory: () => {
