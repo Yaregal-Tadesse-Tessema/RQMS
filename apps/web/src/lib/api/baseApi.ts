@@ -2,8 +2,31 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 import { authClient } from "@/lib/auth-client";
 
+function resolveApiBaseUrl(): string {
+  const envBase = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const fallback = "http://localhost:4000/api";
+
+  if (typeof window === "undefined") {
+    return envBase ?? fallback;
+  }
+
+  const runtimeHost = window.location.hostname;
+  const candidate = envBase ?? fallback;
+
+  try {
+    const u = new URL(candidate);
+    if (u.hostname === "localhost" && runtimeHost !== "localhost") {
+      u.hostname = runtimeHost;
+      return u.toString().replace(/\/$/, "");
+    }
+    return candidate;
+  } catch {
+    return candidate;
+  }
+}
+
 const rawBaseQuery = fetchBaseQuery({
-  baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:4000/api",
+  baseUrl: resolveApiBaseUrl(),
   prepareHeaders: (headers) => headers
 });
 
