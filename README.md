@@ -24,3 +24,20 @@ This repo implements **Operations & Field Execution** (requirements sections 5, 
 
 1. Generate OpenAPI JSON: `npm run api:openapi`
 2. Generate RTK Query hooks: `npm run web:codegen`
+
+## Production API (PM2)
+
+1. Build API:
+   - `npm run build -w apps/api`
+2. Set production DB and auth values in `ecosystem.config.cjs`:
+   - `DATABASE_URL` (required)
+   - `DATABASE_SSL` (`true` for managed/cloud Postgres, otherwise `false`)
+   - `TYPEORM_SYNCHRONIZE=false`
+3. Start or restart PM2:
+   - `pm2 start ecosystem.config.cjs --only rqms-api`
+   - `pm2 restart ecosystem.config.cjs --only rqms-api --update-env`
+4. Persist PM2 process list:
+   - `pm2 save`
+5. Verify:
+   - `pm2 describe rqms-api`
+   - `pm2 logs rqms-api --lines 100`
