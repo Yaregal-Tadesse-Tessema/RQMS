@@ -1,4 +1,4 @@
-import { baseApi as api } from "D:\\Projects\\My\\Transport\\apps\\web\\src\\lib\\api\\baseApi";
+import { baseApi as api } from "@/lib/api/baseApi";
 const injectedRtkApi = api.injectEndpoints({
   endpoints: (build) => ({
     authControllerMe: build.query<
