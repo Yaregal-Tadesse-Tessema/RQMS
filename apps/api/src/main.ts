@@ -10,8 +10,22 @@ import { AppModule } from "./modules/app/app.module";
 
 async function bootstrap() {
   const logger = new Logger("Bootstrap");
-  const app = await NestFactory.create(AppModule, { cors: true });
+  const app = await NestFactory.create(AppModule, { cors: false });
   const config = app.get(ConfigService);
+
+  const siteUrl = config.get<string>("NEXT_PUBLIC_SITE_URL") ?? "http://localhost:5000";
+  const authBaseUrl = config.get<string>("AUTH_BASE_URL") ?? "http://localhost:5000";
+  const corsOrigins = (config.get<string>("CORS_ORIGINS") ?? `${siteUrl},${authBaseUrl},http://localhost:5000,http://localhost:4000`)
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  app.enableCors({
+    origin: corsOrigins,
+    credentials: true,
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "Accept", "Origin", "X-Requested-With"]
+  });
   app.setGlobalPrefix("api");
 
   app.use(
