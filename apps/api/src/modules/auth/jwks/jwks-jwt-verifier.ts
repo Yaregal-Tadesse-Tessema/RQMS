@@ -12,10 +12,7 @@ export class JwksJwtVerifier {
   private readonly jwks: ReturnType<typeof createRemoteJWKSet>;
 
   constructor() {
-    const url = process.env.AUTH_JWKS_URL;
-    if (!url) {
-      throw new Error("AUTH_JWKS_URL is required (e.g. http://localhost:3000/api/auth/jwks)");
-    }
+    const url = "http://localhost:3000/api/auth/jwks";
     this.jwksUrl = new URL(url);
     this.jwks = createRemoteJWKSet(this.jwksUrl);
   }
@@ -33,4 +30,3 @@ export class JwksJwtVerifier {
     }
   }
 }
-
