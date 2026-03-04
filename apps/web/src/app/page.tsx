@@ -45,11 +45,11 @@ export default function HomePage() {
             </div>
 
             <div className="heroMeta">
-              <span className="metaItem">API: http://localhost:4000</span>
+              <span className="metaItem">API: http://localhost:4000/api</span>
               <span className="metaDot" aria-hidden="true">
                 |
               </span>
-              <a className="metaItem" href="http://localhost:4000/docs" target="_blank" rel="noreferrer">
+              <a className="metaItem" href="http://localhost:4000/api/docs" target="_blank" rel="noreferrer">
                 API docs
               </a>
             </div>

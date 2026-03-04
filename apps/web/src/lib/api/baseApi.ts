@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { authClient } from "@/lib/auth-client";
 
 const rawBaseQuery = fetchBaseQuery({
-  baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:4000",
+  baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:4000/api",
   prepareHeaders: (headers) => headers
 });
 
@@ -32,4 +32,3 @@ export const baseApi = createApi({
   },
   endpoints: () => ({})
 });
-
